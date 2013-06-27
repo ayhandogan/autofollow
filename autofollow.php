@@ -3,6 +3,7 @@
 A simple php script to automatically follow on Twitter.
 Checks your followers - whether they follow you around and if not, then you follow them.
 
+version    1.0
 (c) Max Makarov (PupkinZade Inc.), 2012, 2013 (http://pupkinzade.tumblr.com)
 */
 require_once 'twitter.class.php';
