@@ -1,4 +1,3 @@
-=======
 [Twitter for PHP v1.0](https://github.com/PupkinZade/autofollow)
 
 ================================
