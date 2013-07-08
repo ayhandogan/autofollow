@@ -1,5 +1,3 @@
-
-[Twitter for PHP v0.2 BETA](https://github.com/PupkinZade/autofollow)
 =======
 [Twitter for PHP v1.0](https://github.com/PupkinZade/autofollow)
 
