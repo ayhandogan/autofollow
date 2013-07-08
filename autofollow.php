@@ -7,31 +7,32 @@ version    1.0
 (c) Max Makarov (PupkinZade Inc.), 2012, 2013 (http://pupkinzade.tumblr.com)
 */
 require_once 'twitter.class.php';
-set_time_limit(0);
+
+// Settings
+
 $consumer_key=""; /* your CONSUMER-KEY */
 $consumer_sec=""; /* your CONSUMER-SECRET */
-$oauth_tok="";  /* тут ваш OAUTH-TOKEN */
+$oauth_tok="";  /* your OAUTH-TOKEN */
 $oauth_sec=""; /* your OAUTH-SECRET */
 $numb=50; /* you need to check how many followers. Will follow your readers with the latest. Be aware of the limits of Twitter */
 $nik="Twitter_nik"; /* your nickname */
 
+// end setting
 
 	$connection = new Twitter($consumer_key, $consumer_sec, $oauth_tok, $oauth_sec);
+	
+	$twitter = $connection->request('followers/ids', 'GET', array('screen_name' => $nik, 'count'=>$numb));
+		$MassTweets=$twitter->ids;
 
-$twitter = $connection->request('followers/ids', 'GET', array('screen_name' => $nik));
+$followers = implode(',', $MassTweets);
+$twi = $connection->request('friendships/lookup', 'GET', array('user_id' => $followers));
 
 for($i=0;$i<$numb;$i++) { 
-$follower=$twitter->ids[$i];
-$twi = $connection->request('friendships/show', 'GET', array('source_screen_name' => $nik, 'target_id' =>$follower));
-$exist=$twi->relationship->target->following;
-
-if($exist=="false") {
-
-$connection->request('friendships/create', 'POST', array('user_id' =>$follower, 'follow' => 'true'));
-
-echo "<li>You follow: ".$follower."</li>";
+if($twi[$i]->connections[0]!="following") {
+$connection->request('friendships/create', 'POST', array('user_id' =>$twitter->ids[$i], 'follow' => 'true'));
+echo "<li>You follow: ".$twitter->ids[$i]."</li>";
 }
-else {
-}
+else {}
 }
 ?>
+
