@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [Twitter for PHP v0.2 BETA](https://github.com/PupkinZade/autofollow)
+=======
+[Twitter for PHP v1.0](https://github.com/PupkinZade/autofollow)
+>>>>>>> update to v1.0
 ================================
 
 A simple php script to automatically follow on Twitter.
