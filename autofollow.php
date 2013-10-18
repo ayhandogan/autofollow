@@ -14,13 +14,13 @@ $consumer_key=""; /* your CONSUMER-KEY */
 $consumer_sec=""; /* your CONSUMER-SECRET */
 $oauth_tok="";  /* your OAUTH-TOKEN */
 $oauth_sec=""; /* your OAUTH-SECRET */
-$numb=50; /* you need to check how many followers. Will follow your readers with the latest. Be aware of the limits of Twitter */
-$nik="Twitter_nik"; /* your nickname */
-
+$numb=20; /* you need to check how many followers. Will follow your readers with the latest. 100 - maximum */
+$nik='pupkinzade'; /* your Username */
+$avatar='1'; // follow with a default images? '0' - yes. '1' - no
 // end setting
 
+
 	$connection = new Twitter($consumer_key, $consumer_sec, $oauth_tok, $oauth_sec);
-	
 	$twitter = $connection->request('followers/ids', 'GET', array('screen_name' => $nik, 'count'=>$numb));
 		$MassTweets=$twitter->ids;
 
@@ -28,11 +28,16 @@ $followers = implode(',', $MassTweets);
 $twi = $connection->request('friendships/lookup', 'GET', array('user_id' => $followers));
 
 for($i=0;$i<$numb;$i++) { 
-if($twi[$i]->connections[0]!="following") {
-$connection->request('friendships/create', 'POST', array('user_id' =>$twitter->ids[$i], 'follow' => 'true'));
-echo "<li>You follow: ".$twitter->ids[$i]."</li>";
+$tweet=$connection ->loadUserInfoById($MassTweets[$i]);
+if(($avatar==1) && (stripos($tweet->profile_image_url,'default_profile')!==FALSE)) {
+$default_avatars++;
 }
-else {}
+else {
+	if($twi[$i]->connections[0]!="following") {				
+$connection->request('friendships/create', 'POST', array('user_id' =>$MassTweets[$i], 'follow' => 'true'));
+echo "<li>You follow: ".$MassTweets[$i]."</li>";
 }
+}
+}
+echo '<p>default avatars: '.$default_avatars.'</p>'; 
 ?>
-
