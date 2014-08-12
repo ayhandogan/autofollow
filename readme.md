@@ -1,4 +1,4 @@
-[AutoFollow Tool For Twitter v2.0](https://github.com/PupkinZade/autofollow)
+[Twitter for PHP v1.0](https://github.com/PupkinZade/autofollow)
 ================================
 
 A simple php script to automatically follow on Twitter.
@@ -8,7 +8,7 @@ Requirements
 ------------
 - PHP (version 5 or better)
 - Basic knowledge of Twitter API 1.1 and PHP 
-- cURL
+
  
 
 
