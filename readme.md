@@ -11,7 +11,6 @@ Requirements
 - cURL
  
 
-
 Usage
 -----
 Sign in to the http://twitter.com and register an application from the http://dev.twitter.com/apps page. Remember
@@ -20,16 +19,12 @@ token. Now you have consumer key, consumer secret, access token and access token
 
 Create object using application and request/access keys
 
-	$connection = new Twitter($consumer_key, $consumer_sec, $oauth_tok, $oauth_sec);
-
-The send() method updates your status. The message must be encoded in UTF-8:
-
-	$twitter->send('I am fine today.');
+	$connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN,  ACCESS_TOKEN_SECRET);
 
 
 
 -----
-Project at GitHub: https://github.com/PupkinZade/autofollow
+Project at GitHub: https://github.com/PupkinZade/from_search
 Twitter's API documentation: http://dev.twitter.com/doc
 
-(c) Max Makarov (PupkinZade Inc.), 2012, 2013 (http://pupkinzade.tumblr.com)
+(c) Max Makarov (PupkinZade Inc.), 2014 (https://twitter.com/PupkinZade)
